@@ -3,7 +3,7 @@ module.exports = {
     "protocol": "http",
     "user": "bitcoin",
     "pass": "oongei4UZoongaa6ieD7veer",
-    "host": "bitcoin",
+    "host": "bitcoin-abc",
     "port": "8332",
     "limit": 15
   },

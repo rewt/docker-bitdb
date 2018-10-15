@@ -1,16 +1,5 @@
 version: '3'
 services:
-  bitdb:
-    build:
-      context: "./docker"
-      dockerfile: "./Dockerfile.bitdb"
-    image: bitdb
-    container_name: bitdb
-    working_dir: "/app"
-    command: npm start
-    restart: always
-    networks:
-      - bitdb
   mongo:
     image: mongo
     container_name: mongo
@@ -33,6 +22,22 @@ services:
       - 8333:8333
     volumes:
        - ./bitcoin:/root/.bitcoin
+  bitdb:
+    build:
+      context: "./docker"
+      dockerfile: "./Dockerfile.bitdb"
+    image: bitdb
+    container_name: bitdb
+    working_dir: "/app"
+    command: npm start
+    restart: always
+    networks:
+      - bitdb
+    depends_on:
+      - mongo
+      - bitcoin-abc
+    environment:
+      WAIT_HOSTS: bitcoin-abc:8332 mongo:27017
 
 networks:
   bitdb:
