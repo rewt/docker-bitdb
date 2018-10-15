@@ -1,0 +1,8 @@
+FROM node
+
+RUN git clone https://github.com/21centurymotorcompany/bitd.git /app
+COPY ./config.js /app/config.js
+WORKDIR /app
+RUN npm install
+
+CMD ["npm", "start"]
