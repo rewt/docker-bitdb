@@ -1,0 +1,10 @@
+FROM node
+
+RUN git clone https://github.com/21centurymotorcompany/bitserve.git /bitserve
+COPY ./bitserve.json /bitserve/bitserve.json
+WORKDIR /bitserve
+RUN npm install
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
